@@ -28,15 +28,25 @@
 
         <p>
             <label for="searchTerm">Keyword:</label>
-            <input type="text" name="searchTerm" id="searchTerm" />
+            <input type="text" name="searchTerm" id="searchTerm"/>
         </p>
 
-        <input type="submit" value="Search" />
+        <input type="submit" value="Search"/>
     </form>
 
-    <hr />
+    <hr/>
+
+    <h2 th:if="${jobs != null}" th:text="${#lists.size(jobs) + ' Result(s)'}"></h2>
 
     <!-- TODO #2 - Loop over jobs map to display all job fields -->
+
+    <table th:each="job : ${jobs}" th:class="job-listing">
+        <tr th:each="column : ${job}">
+            <td th:text="${column.key}"></td>
+            <td th:text="${column.value}"></td>
+        </tr>
+    </table>
+
 
 </div>
 
